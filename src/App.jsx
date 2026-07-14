@@ -108,7 +108,11 @@ function Courses() {
     ['all', 'Все'], ['languages', 'Языки'], ['exam', 'Экзамены'], ['kids', 'Детям'], ['academic', 'Школьные'], ['digital', 'IT'],
   ];
   const [filter, setFilter] = useState('all');
-  const visible = useMemo(() => filter === 'all' ? courses : courses.filter(course => course.category === filter), [filter]);
+  const allDirections = useMemo(() => [
+    ...courses,
+    ...extraPrograms.map(program => ({ ...program, description: program.text })),
+  ], []);
+  const visible = useMemo(() => filter === 'all' ? allDirections : allDirections.filter(course => course.category === filter), [filter, allDirections]);
 
   return (
     <section className="course-section section" id="courses">
@@ -121,12 +125,12 @@ function Courses() {
           {visible.map((course) => {
             const index = courses.findIndex(item => item.id === course.id);
             return (
-              <article className="course-card reveal visible" key={course.id} tabIndex="0">
-                <div className={`course-icon ${course.tone}`}><Icon name={courseIcons[index]} /></div>
+              <a className="course-card reveal visible" href={`${registrationUrl}?course=${encodeURIComponent(course.apiKey)}`} key={course.id} aria-label={`Записаться на курс ${course.title}`}>
+                <div className={`course-icon ${course.tone}`}><Icon name={course.icon || courseIcons[index] || 'book'} /></div>
                 <span className="course-age">{course.label}</span><h3>{course.title}</h3><p>{course.description}</p>
                 <ul className="course-details">{course.details.map(detail => <li key={detail}><Icon name="check" />{detail}</li>)}</ul>
-                <a href={registrationUrl}>Записаться <span>→</span></a>
-              </article>
+                <span className="course-cta">Записаться <span>→</span></span>
+              </a>
             );
           })}
         </div>
@@ -189,7 +193,7 @@ function Admissions() {
 }
 
 function Branches() {
-  return <section className="branches section" id="branches"><div className="container"><SectionHeader eyebrow="Мы рядом" title={<>Выберите <em>удобный филиал</em></>} description="Пять учебных пространств в Оше и Ошской области. Направления могут отличаться по филиалам."/><div className="branch-grid">{branches.map((branch,index)=><article className={`branch-card reveal ${branch.featured?'main-branch':''}`} key={branch.id}>{branch.featured?<div className="branch-label">Главный филиал</div>:<span className="branch-no">{String(index+1).padStart(2,'0')}</span>}<h3>{branch.name}</h3><p>{branch.address}</p><div className="branch-tags">{branch.programs.map(program=><span key={program}>{program}</span>)}</div><a href={registrationUrl}>Выбрать филиал →</a></article>)}</div></div></section>;
+  return <section className="branches section" id="branches"><div className="container"><SectionHeader eyebrow="Мы рядом" title={<>Выберите <em>удобный филиал</em></>} description="Нажмите на филиал — он автоматически выберется в форме записи. Направления могут отличаться по филиалам."/><div className="branch-grid">{branches.map((branch,index)=><a className={`branch-card reveal ${branch.featured?'main-branch':''}`} href={`${registrationUrl}?branch=${branch.id}`} aria-label={`Выбрать филиал ${branch.name}`} key={branch.id}>{branch.featured?<div className="branch-label">Главный филиал</div>:<span className="branch-no">{String(index+1).padStart(2,'0')}</span>}<h3>{branch.name}</h3><p>{branch.address}</p><div className="branch-tags">{branch.programs.map(program=><span key={program}>{program}</span>)}</div></a>)}</div></div></section>;
 }
 
 function FAQ() {
@@ -205,6 +209,11 @@ function Footer() {
 function RegistrationPage() {
   const [status, setStatus] = useState('idle');
   const [submitError, setSubmitError] = useState('');
+  const requestedCourse = new URLSearchParams(window.location.search).get('course') || '';
+  const requestedBranch = new URLSearchParams(window.location.search).get('branch') || '';
+  const availableCourseKeys = [...courses, ...extraPrograms].map(item => item.apiKey);
+  const selectedCourse = availableCourseKeys.includes(requestedCourse) ? requestedCourse : '';
+  const selectedBranch = branches.some(branch => String(branch.id) === requestedBranch) ? requestedBranch : '';
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -297,8 +306,8 @@ function RegistrationPage() {
                       <label className="field"><span>Номер телефона *</span><input name="phone" type="tel" autoComplete="tel" placeholder="+996 700 000 000" required /></label>
                       <label className="field"><span>Имя ученика *</span><input name="childName" type="text" placeholder="Например, Али" required /></label>
                       <label className="field"><span>Возраст ученика *</span><input name="studentAge" type="number" min="1" max="99" placeholder="Например, 16" required /></label>
-                      <label className="field"><span>Направление *</span><select name="course" defaultValue="" required><option value="" disabled>Выберите курс</option>{courses.map(course => <option key={course.id} value={course.apiKey}>{course.title}</option>)}{extraPrograms.map(program => <option key={program.title} value={program.apiKey}>{program.title}</option>)}</select></label>
-                      <label className="field"><span>Удобный филиал *</span><select name="branchId" defaultValue="" required><option value="" disabled>Выберите филиал</option>{branches.map(branch => <option key={branch.id} value={branch.id}>{branch.name} — {branch.address}</option>)}</select></label>
+                      <label className="field"><span>Направление *</span><select name="course" defaultValue={selectedCourse} required><option value="" disabled>Выберите курс</option>{courses.map(course => <option key={course.id} value={course.apiKey}>{course.title}</option>)}{extraPrograms.map(program => <option key={program.title} value={program.apiKey}>{program.title}</option>)}</select></label>
+                      <label className="field"><span>Удобный филиал *</span><select name="branchId" defaultValue={selectedBranch} required><option value="" disabled>Выберите филиал</option>{branches.map(branch => <option key={branch.id} value={branch.id}>{branch.name} — {branch.address}</option>)}</select></label>
                       <label className="field"><span>Откуда вы о нас узнали? *</span><select name="source" defaultValue="" required><option value="" disabled>Выберите вариант</option><option>WhatsApp</option><option>Instagram</option><option>Таргет (реклама)</option><option>Родственники / знакомые</option><option>Другое</option></select></label>
                       <label className="field"><span>Удобное время</span><select name="preferredTime" defaultValue=""><option value="">Не имеет значения</option><option>Утро</option><option>День</option><option>Вечер</option><option>Выходные</option></select></label>
                       <label className="field field-full"><span>Комментарий</span><textarea name="message" rows="3" placeholder="Расскажите о цели или задайте вопрос" /></label>
@@ -329,7 +338,7 @@ function App() {
 
   if (window.location.pathname.startsWith('/registration')) return <RegistrationPage />;
 
-  return <><a className="skip-link" href="#main">Перейти к содержанию</a><Header/><main id="main"><Hero/><Courses/><ExtraPrograms/><Method/><Teachers/><Benefits/><Admissions/><Branches/><FAQ/><section className="cta-section"><div className="container cta-card reveal"><div><span className="eyebrow light"><i/>Начните с простого шага</span><h2>Выберите курс,<br/><em>который подходит вам</em></h2><p>Оставьте заявку — мы уточним цель, подберём филиал и расскажем о ближайших группах.</p></div><div className="cta-actions"><Button light large>Оставить заявку <Icon name="arrow"/></Button><span>Ответим и поможем с выбором</span></div></div></section></main><Footer/></>;
+  return <><a className="skip-link" href="#main">Перейти к содержанию</a><Header/><main id="main"><Hero/><Courses/><Method/><Teachers/><Benefits/><Admissions/><Branches/><FAQ/><section className="cta-section"><div className="container cta-card reveal"><div><span className="eyebrow light"><i/>Начните с простого шага</span><h2>Выберите курс,<br/><em>который подходит вам</em></h2><p>Оставьте заявку — мы уточним цель, подберём филиал и расскажем о ближайших группах.</p></div><div className="cta-actions"><Button light large>Оставить заявку <Icon name="arrow"/></Button><span>Ответим и поможем с выбором</span></div></div></section></main><Footer/></>;
 }
 
 export default App;
