@@ -29,5 +29,14 @@
 .react-course-grid .course-card{display:block;min-height:350px}.course-cta{position:absolute;bottom:22px;left:25px;color:var(--green-800);font-size:11px;font-weight:800}.course-cta>span{display:inline-block;margin-left:4px;transition:transform .2s}.course-card:hover .course-cta,.course-card:focus-visible .course-cta{color:#fff}.course-card:hover .course-cta>span,.course-card:focus-visible .course-cta>span{transform:translateX(4px)}.branch-card{display:flex;flex-direction:column;min-height:205px}.branch-card>a,.main-branch>a{position:static;align-self:flex-start;margin-top:24px;padding-top:0;color:var(--green-800)}.main-branch>a{color:#fff}.branch-tags{margin-bottom:0}
 @media(max-width:560px){.react-course-grid .course-card{min-height:310px}.course-cta{right:14px;bottom:15px;left:14px;font-size:9px}.branch-card.main-branch{min-height:350px}.branch-card>a,.main-branch>a{margin-top:28px}}
 
+/* Generated American Dream photography */
+.method-photo{margin:26px 0 28px;overflow:hidden;border:1px solid rgba(255,255,255,.16);border-radius:20px;box-shadow:0 18px 44px rgba(0,0,0,.18)}
+.method-photo img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center}
+.teacher-board{position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(4,61,49,.18),rgba(4,61,49,.9)),url('/assets/american-dream-teacher-classroom.png') center/cover no-repeat}
+.teacher-board>*{position:relative;z-index:1;text-shadow:0 2px 14px rgba(0,0,0,.26)}
+.branch-card.main-branch{background-image:linear-gradient(110deg,rgba(4,61,49,.96) 0%,rgba(4,61,49,.8) 48%,rgba(4,61,49,.35) 100%),url('/assets/american-dream-branch-people.png');background-position:center;background-size:cover}
+.main-branch:hover,.main-branch:focus-visible{background-image:linear-gradient(110deg,rgba(4,61,49,.98) 0%,rgba(8,122,99,.82) 50%,rgba(4,61,49,.4) 100%),url('/assets/american-dream-branch-people.png');background-position:center;background-size:cover}
+@media(max-width:560px){.method-photo{margin:22px 0 25px}.branch-card.main-branch{background-position:60% center}}
+
 /* Keep branch course tags and action on separate rows */
-.branch-card:not(.main-branch){min-height:195px}.branch-label{align-self:flex-start}.branch-card{cursor:pointer;transition:transform .22s,box-shadow .22s,border-color .22s,background .22s}.branch-card:hover,.branch-card:focus-visible{border-color:var(--green-200);box-shadow:0 16px 42px rgba(4,61,49,.13);transform:translateY(-4px)}.main-branch:hover,.main-branch:focus-visible{border-color:var(--green-700);background:var(--green-900)}.branch-card:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.branch-card:not(.main-branch){min-height:195px}.branch-label{align-self:flex-start}.branch-card{cursor:pointer;transition:transform .22s,box-shadow .22s,border-color .22s,background .22s}.branch-card:hover,.branch-card:focus-visible{border-color:var(--green-200);box-shadow:0 16px 42px rgba(4,61,49,.13);transform:translateY(-4px)}.main-branch:hover,.main-branch:focus-visible{border-color:var(--green-700)}.branch-card:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
