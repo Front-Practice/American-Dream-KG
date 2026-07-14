@@ -75,11 +75,11 @@ export const extraPrograms = [
 ];
 
 export const branches = [
-  { id: 1, name: 'American Dream OSH', address: 'ул. Атабаева, 21, Ош', featured: true, programs: ['English', 'IELTS', 'Math', 'Coding'] },
-  { id: 2, name: 'Араванская', address: 'ул. Моминова, 24, Ош', programs: ['English', 'IELTS', 'Языки'] },
-  { id: 3, name: 'Араван', address: 'ул. Ленина, 18', programs: ['English', 'Math', 'Русский'] },
-  { id: 4, name: 'Кара-Суу', address: 'ул. Ала-Тоо, 87', programs: ['English', 'Coding', 'Языки'] },
-  { id: 5, name: 'Жибек-Жолу 10 Адыр', address: 'ул. Геодезическая, 40', programs: ['English', 'Kids', 'Coding'] },
+  { id: 1, name: 'American Dream OSH', address: 'ул. Атабаева, 21, Ош', featured: true, programs: ['Английский (General)', 'IELTS', 'Английский для детей', 'Математика', 'OPT', 'Корейский', 'Китайский', '1C Бугалтерия', 'Арабский', 'Турецкий', 'Химия и Биология', 'IT'] },
+  { id: 2, name: 'Араванская', address: 'ул. Моминова, 24, Ош', programs: ['Английский (General)', 'Русский язык', 'Начальный класс', 'Китайский', 'Арабский', 'IELTS'] },
+  { id: 3, name: 'Араван', address: 'ул. Ленина, 18', programs: ['Английский (General)', 'Русский язык', 'Математика'] },
+  { id: 4, name: 'Кара-Суу', address: 'ул. Ала-Тоо, 87', programs: ['Английский (General)', 'IT', 'English for Kids', 'Корейский', 'Китайский', 'Начальный класс'] },
+  { id: 5, name: 'Жибек-Жолу 10 Адыр', address: 'ул. Геодезическая, 40', programs: ['Английский (General)', 'IT', 'English for Kids', 'Начальный класс'] },
 ];
 
 export const faqs = [

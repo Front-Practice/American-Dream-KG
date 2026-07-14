@@ -338,7 +338,33 @@ function App() {
 
   if (window.location.pathname.startsWith('/registration')) return <RegistrationPage />;
 
-  return <><a className="skip-link" href="#main">Перейти к содержанию</a><Header/><main id="main"><Hero/><Courses/><Method/><Teachers/><Benefits/><Admissions/><Branches/><FAQ/><section className="cta-section"><div className="container cta-card reveal"><div><span className="eyebrow light"><i/>Начните с простого шага</span><h2>Выберите курс,<br/><em>который подходит вам</em></h2><p>Оставьте заявку — мы уточним цель, подберём филиал и расскажем о ближайших группах.</p></div><div className="cta-actions"><Button light large>Оставить заявку <Icon name="arrow"/></Button><span>Ответим и поможем с выбором</span></div></div></section></main><Footer/></>;
+  return <><a className="skip-link" href="#main">Перейти к содержанию</a><Header/><main id="main"><Hero/><Courses/><Method/><Teachers/><Benefits/><Admissions/><Branches/><FAQ/><section className="cta-section" id="application"><div className="container cta-card reveal"><div><span className="eyebrow light"><i/>Начните с простого шага</span><h2>Выберите курс,<br/><em>который подходит вам</em></h2><p>Оставьте заявку — мы уточним цель, подберём филиал и расскажем о ближайших группах.</p></div><div className="cta-actions"><Button light large>Оставить заявку <Icon name="arrow"/></Button><span>Ответим и поможем с выбором</span></div></div></section></main><Footer/><ScrollDirectionButton/></>;
+}
+
+function ScrollDirectionButton() {
+  const [goUp, setGoUp] = useState(false);
+
+  useEffect(() => {
+    const updateDirection = () => {
+      const application = document.getElementById('application');
+      if (!application) return;
+      setGoUp(window.scrollY >= application.offsetTop - window.innerHeight * 0.55);
+    };
+    updateDirection();
+    window.addEventListener('scroll', updateDirection, { passive: true });
+    window.addEventListener('resize', updateDirection);
+    return () => {
+      window.removeEventListener('scroll', updateDirection);
+      window.removeEventListener('resize', updateDirection);
+    };
+  }, []);
+
+  const handleClick = () => {
+    if (goUp) window.scrollTo({ top: 0, behavior: 'smooth' });
+    else document.getElementById('application')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  return <button className={`scroll-direction ${goUp ? 'is-up' : ''}`} type="button" onClick={handleClick} aria-label={goUp ? 'Наверх страницы' : 'К форме записи'} title={goUp ? 'Наверх' : 'К заявке'}><Icon name="arrow"/><span>{goUp ? 'Наверх' : 'К заявке'}</span></button>;
 }
 
 export default App;

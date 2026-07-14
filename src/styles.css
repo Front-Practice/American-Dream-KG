@@ -29,6 +29,16 @@
 .react-course-grid .course-card{display:block;min-height:350px}.course-cta{position:absolute;bottom:22px;left:25px;color:var(--green-800);font-size:11px;font-weight:800}.course-cta>span{display:inline-block;margin-left:4px;transition:transform .2s}.course-card:hover .course-cta,.course-card:focus-visible .course-cta{color:#fff}.course-card:hover .course-cta>span,.course-card:focus-visible .course-cta>span{transform:translateX(4px)}.branch-card{display:flex;flex-direction:column;min-height:205px}.branch-card>a,.main-branch>a{position:static;align-self:flex-start;margin-top:24px;padding-top:0;color:var(--green-800)}.main-branch>a{color:#fff}.branch-tags{margin-bottom:0}
 @media(max-width:560px){.react-course-grid .course-card{min-height:310px}.course-cta{right:14px;bottom:15px;left:14px;font-size:9px}.branch-card.main-branch{min-height:350px}.branch-card>a,.main-branch>a{margin-top:28px}}
 
+/* Floating page direction and complete branch program lists */
+.scroll-direction{position:fixed;z-index:140;right:24px;bottom:24px;min-height:52px;display:flex;align-items:center;gap:9px;padding:12px 17px;border:1px solid rgba(255,255,255,.38);border-radius:999px;color:#fff;background:var(--green-800);box-shadow:0 14px 38px rgba(4,61,49,.3);font-size:11px;font-weight:800;cursor:pointer;transition:transform .2s,background .2s,box-shadow .2s}
+.scroll-direction:hover{background:var(--green-950);box-shadow:0 18px 44px rgba(4,61,49,.38);transform:translateY(-3px)}
+.scroll-direction svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transform:rotate(90deg);transition:transform .25s}
+.scroll-direction.is-up svg{transform:rotate(-90deg)}
+.branch-tags span{white-space:nowrap}
+.branch-card.main-branch{min-height:430px}
+.branch-card:not(.main-branch){min-height:225px}
+@media(max-width:560px){.scroll-direction{right:15px;bottom:15px;width:50px;height:50px;min-height:50px;justify-content:center;padding:0}.scroll-direction span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}.branch-card.main-branch{min-height:440px}.branch-card:not(.main-branch){min-height:230px}.branch-tags{gap:6px}.branch-tags span{font-size:7px}}
+
 /* Generated American Dream photography */
 .method-photo{margin:26px 0 28px;overflow:hidden;border:1px solid rgba(255,255,255,.16);border-radius:20px;box-shadow:0 18px 44px rgba(0,0,0,.18)}
 .method-photo img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center}
