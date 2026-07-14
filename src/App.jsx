@@ -58,7 +58,7 @@ function Header() {
       <div className="topbar">
         <div className="container topbar-inner">
           <span><Icon name="pin" />5 филиалов в Оше и Ошской области</span>
-          <div className="topbar-links"><a href="https://www.instagram.com/americandream.osh/" target="_blank" rel="noreferrer">Instagram</a><a href="tel:+996700000000">+996 700 000 000</a></div>
+          <div className="topbar-links"><a href="https://www.instagram.com/americandream.osh/" target="_blank" rel="noreferrer">Instagram</a><a href="tel:+996990555504">+996 990 555 504</a></div>
         </div>
       </div>
       <header className="site-header">
@@ -199,7 +199,7 @@ function FAQ() {
 
 function Footer() {
   const home = window.location.pathname.startsWith('/registration') ? '/' : '';
-  return <footer className="footer"><div className="container footer-grid"><div><img src="/assets/american-dream-logo.png" width="210" height="60" alt="American Dream"/><p>Образовательный центр для детей, подростков и взрослых в Оше и Ошской области.</p><a className="instagram" href="https://www.instagram.com/americandream.osh/" target="_blank" rel="noreferrer">Instagram @americandream.osh</a></div><div><h3>Направления</h3><a href={`${home}#courses`}>Английский</a><a href={`${home}#courses`}>IELTS</a><a href={`${home}#courses`}>Математика</a><a href={`${home}#courses`}>Программирование</a></div><div><h3>Центр</h3><a href={`${home}#method`}>Как мы учим</a><a href={`${home}#teachers`}>Преподаватели</a><a href={`${home}#branches`}>Филиалы</a><a href={`${home}#faq`}>Вопросы</a></div><div><h3>Контакты</h3><a href="tel:+996700000000">+996 700 000 000</a><p>Главный филиал:<br/>ул. Атабаева, 21, Ош</p><a href={registrationUrl}>Онлайн-запись</a></div></div><div className="container footer-bottom"><span>© 2026 American Dream. Все права защищены.</span><span>Ош, Кыргызская Республика</span></div></footer>;
+  return <footer className="footer"><div className="container footer-grid"><div><img src="/assets/american-dream-logo.png" width="210" height="60" alt="American Dream"/><p>Образовательный центр для детей, подростков и взрослых в Оше и Ошской области.</p><a className="instagram" href="https://www.instagram.com/americandream.osh/" target="_blank" rel="noreferrer">Instagram @americandream.osh</a></div><div><h3>Направления</h3><a href={`${home}#courses`}>Английский</a><a href={`${home}#courses`}>IELTS</a><a href={`${home}#courses`}>Математика</a><a href={`${home}#courses`}>Программирование</a></div><div><h3>Центр</h3><a href={`${home}#method`}>Как мы учим</a><a href={`${home}#teachers`}>Преподаватели</a><a href={`${home}#branches`}>Филиалы</a><a href={`${home}#faq`}>Вопросы</a></div><div><h3>Контакты</h3><a href="tel:+996990555504">+996 990 555 504</a><p>Главный филиал:<br/>ул. Атабаева, 21, Ош</p><a href={registrationUrl}>Онлайн-запись</a></div></div><div className="container footer-bottom"><span>© 2026 American Dream. Все права защищены.</span><span>Ош, Кыргызская Республика</span></div></footer>;
 }
 
 function RegistrationPage() {
